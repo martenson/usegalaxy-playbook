@@ -1,4 +1,5 @@
 language: python
+python: 2.7
 env:
   - GALAXY_VERSION=release_19.05
   - GALAXY_SKIP_CLIENT_BUILD=1
@@ -20,8 +21,9 @@ script:
   - source ${GALAXY_DIR}/.venv/bin/activate
   - pip install mock
   - pip install pytest
-  - export PYTHONPATH=${PLAYBOOK_DIR}/env/common/files/galaxy/dynamic_rules/lib/
-  - cd ${PLAYBOOK_DIR}/env/common/files/galaxy/dynamic_rules/test/unit/
+  - export PYTHONPATH=$PYTHONPATH:${PLAYBOOK_DIR}/env/common/files/galaxy/dynamic_rules/lib/
+  - tree ${PLAYBOOK_DIR}/env/common/files/galaxy/dynamic_rules/
+  - cd ${PLAYBOOK_DIR}/env/common/files/galaxy/dynamic_rules/test/
   - pytest -s
 notifications:
   email: false
