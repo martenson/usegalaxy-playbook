@@ -1,20 +1,19 @@
 language: python
 python: 2.7
-env:
-  - GALAXY_VERSION=release_19.05
-  - GALAXY_SKIP_CLIENT_BUILD=1
 script:
+  - export GALAXY_SKIP_CLIENT_BUILD=1
+  - export GALAXY_VERSION=release_19.05
   - cd ${TRAVIS_BUILD_DIR}
   - wget https://github.com/galaxyproject/galaxy/archive/${GALAXY_VERSION}.tar.gz
   - tar xvzf ${GALAXY_VERSION}.tar.gz | tail
   - cd galaxy-${GALAXY_VERSION}
-  - GALAXY_DIR=$PWD
+  - export GALAXY_DIR=$PWD
   - sh scripts/common_startup.sh
   - cd ${TRAVIS_BUILD_DIR}
   - wget https://github.com/galaxyproject/usegalaxy-playbook/archive/master.tar.gz
   - tar xvzf master.tar.gz | tail
   - cd usegalaxy-playbook-master
-  - PLAYBOOK_DIR=$PWD
+  - export PLAYBOOK_DIR=$PWD
   - cd ${TRAVIS_BUILD_DIR}
   - mv ${GALAXY_DIR}/lib ${PLAYBOOK_DIR}/env/common/files/galaxy/dynamic_rules/
   - cd ${TRAVIS_BUILD_DIR}
