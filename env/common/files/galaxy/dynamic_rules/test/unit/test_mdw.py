@@ -6,13 +6,9 @@ files. The rest of the stack is mocked.
 import pytest
 import mock
 import os
-# import sys
 
-# sys.path.append('/path/to/whatever')
-
-
-from galaxy.jobs.mapper import JobMappingException
-from galaxy.jobs import JobConfiguration
+from lib.galaxy.jobs.mapper import JobMappingException
+from lib.galaxy.jobs import JobConfiguration
 
 from ... import multi_dynamic_walltime as mdw
 
