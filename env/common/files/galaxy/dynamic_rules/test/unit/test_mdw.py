@@ -7,8 +7,8 @@ import pytest
 import mock
 import os
 
-from lib.galaxy.jobs.mapper import JobMappingException
-from lib.galaxy.jobs import JobConfiguration
+from galaxy.jobs.mapper import JobMappingException
+from galaxy.jobs import JobConfiguration
 
 from ... import multi_dynamic_walltime as mdw
 
