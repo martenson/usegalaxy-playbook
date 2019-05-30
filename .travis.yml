@@ -3,27 +3,20 @@ python: 2.7
 script:
   - export GALAXY_SKIP_CLIENT_BUILD=1
   - export GALAXY_VERSION=release_19.05
-  - ls -lah
-  - pwd
   - cd ${TRAVIS_BUILD_DIR}
-  - ls -lah
-  - pwd
   - wget https://github.com/galaxyproject/galaxy/archive/${GALAXY_VERSION}.tar.gz
   - tar xvzf ${GALAXY_VERSION}.tar.gz | tail
   - cd galaxy-${GALAXY_VERSION}
   - export GALAXY_DIR=$PWD
-  - ls -lah
-  - pwd
+  - sh scripts/common_startup.sh
   - cd ${TRAVIS_BUILD_DIR}
-  - ls -lah
-  - pwd
   - echo ${GALAXY_DIR}
-  - mv ${GALAXY_DIR}/lib usegalaxy-playbook/env/common/files/galaxy/dynamic_rules/
+  - mv ${GALAXY_DIR}/lib ${TRAVIS_BUILD_DIR}/env/common/files/galaxy/dynamic_rules/
   - source ${GALAXY_DIR}/.venv/bin/activate
   - pip install mock
   - pip install pytest
-  - export PYTHONPATH=$PYTHONPATH:usegalaxy-playbook/env/common/files/galaxy/dynamic_rules/lib/
-  - cd usegalaxy-playbook/env/common/files/galaxy/dynamic_rules/test/
+  - export PYTHONPATH=$PYTHONPATH:${TRAVIS_BUILD_DIR}/env/common/files/galaxy/dynamic_rules/lib/
+  - cd ${TRAVIS_BUILD_DIR}/env/common/files/galaxy/dynamic_rules/test/
   - pytest -s
 notifications:
   email: false
