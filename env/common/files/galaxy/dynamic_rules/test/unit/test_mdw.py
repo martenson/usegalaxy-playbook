@@ -198,7 +198,7 @@ test_configs = [
     {"ref_size": 1024 ** 4,
      "tool": tool_tophat2_indexed,
      "sbatch_node": "roundup",
-     "resource_params": None,
+     "resource_params": {"stampede_compute_resource": "stampede_normal"},
      "return_nativeSpecification": "--partition=multi --nodes=1 --cpus-per-task=6 --time=36:00:00",
      "return_destination_id": "stampede_normal"},
     {"ref_size": 1024 ** 4,
