@@ -3,13 +3,21 @@ python: 2.7
 script:
   - export GALAXY_SKIP_CLIENT_BUILD=1
   - export GALAXY_VERSION=release_19.05
+  - ls -lah
+  - pwd
   - cd ${TRAVIS_BUILD_DIR}
+  - ls -lah
+  - pwd
   - wget https://github.com/galaxyproject/galaxy/archive/${GALAXY_VERSION}.tar.gz
   - tar xvzf ${GALAXY_VERSION}.tar.gz | tail
   - cd galaxy-${GALAXY_VERSION}
   - export GALAXY_DIR=$PWD
-  - sh scripts/common_startup.sh
+  - ls -lah
+  - pwd
   - cd ${TRAVIS_BUILD_DIR}
+  - ls -lah
+  - pwd
+  - echo ${GALAXY_DIR}
   - mv ${GALAXY_DIR}/lib usegalaxy-playbook/env/common/files/galaxy/dynamic_rules/
   - source ${GALAXY_DIR}/.venv/bin/activate
   - pip install mock
