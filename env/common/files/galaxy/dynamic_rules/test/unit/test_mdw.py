@@ -32,6 +32,18 @@ tool_tophat2_indexed = mock.Mock()
 tool_tophat2_indexed.id = "toolshed.g2.bx.psu.edu/repos/devteam/tophat2/tophat2/2.1.1"
 tool_tophat2_indexed.params_from_strings.return_value = {"refGenomeSource": {
     "genomeSource": "indexed"}}
+tool_tophat2_history = mock.Mock()
+tool_tophat2_history.id = "toolshed.g2.bx.psu.edu/repos/devteam/tophat2/tophat2/2.1.1"
+tool_tophat2_history.params_from_strings.return_value = {"refGenomeSource": {
+    "genomeSource": "history"}}
+tool_hisat2_indexed = mock.Mock()
+tool_hisat2_indexed.id = "toolshed.g2.bx.psu.edu/repos/iuc/hisat2/hisat2/2.1.0+galaxy4"
+tool_hisat2_indexed.params_from_strings.return_value = {"reference_genome": {
+    "source": "indexed"}}
+tool_hisat2_history = mock.Mock()
+tool_hisat2_history.id = "toolshed.g2.bx.psu.edu/repos/iuc/hisat2/hisat2/2.1.0+galaxy4"
+tool_hisat2_history.params_from_strings.return_value = {"reference_genome": {
+    "source": "history"}}
 tool_align_families = mock.Mock()
 tool_align_families.id = "toolshed.g2.bx.psu.edu/repos/nick/dunovo/align_families/2.15"
 
@@ -187,6 +199,24 @@ test_configs = [
      "tool": tool_tophat2_indexed,
      "sbatch_node": "roundup",
      "resource_params": None,
+     "return_nativeSpecification": "--partition=multi --nodes=1 --cpus-per-task=6 --time=36:00:00",
+     "return_destination_id": "stampede_normal"},
+    {"ref_size": 1024 ** 4,
+     "tool": tool_tophat2_history,
+     "sbatch_node": "roundup",
+     "resource_params": {"stampede_compute_resource": "stampede_normal"},
+     "return_nativeSpecification": "--partition=multi --nodes=1 --cpus-per-task=6 --time=36:00:00",
+     "return_destination_id": "slurm_multi"},
+    {"ref_size": 1024 ** 4,
+     "tool": tool_hisat2_indexed,
+     "sbatch_node": "roundup",
+     "resource_params": {"stampede_compute_resource": "stampede_normal"},
+     "return_nativeSpecification": "--partition=multi --nodes=1 --cpus-per-task=6 --time=36:00:00",
+     "return_destination_id": "stampede_normal"},
+    {"ref_size": 1024 ** 4,
+     "tool": tool_hisat2_history,
+     "sbatch_node": "roundup",
+     "resource_params": {"stampede_compute_resource": "stampede_normal"},
      "return_nativeSpecification": "--partition=multi --nodes=1 --cpus-per-task=6 --time=36:00:00",
      "return_destination_id": "slurm_multi"},
 
